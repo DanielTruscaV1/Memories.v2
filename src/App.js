@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+//Import React
+import React from "react";
+//Import @material-ui components
+import {Container, AppBar, Typography, Grow, Grid} from "@material-ui/core";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+//Import an image
+import memories from "./images/memories.png";
+
+//Import the "Form" and "Posts" components
+import Form from "./components/Form/Form";
+import Posts from "./components/Posts/Posts";
+
+//Import styles
+import useStyles from "./styles";
+
+//Create the "App" component
+const App = () => {
+    //Use the styles
+    const classes = useStyles();
+
+    //Return the HTML
+    return (
+        <Container maxwidth="lg">
+            <AppBar className={classes.appBar} position="static" color="inherit">
+                <Typography className={classes.heading} variant="h2" align="center">
+                    Memories-v2
+                    <img  className={classes.image} src={memories} alt="memories" height="60"/>
+                </Typography>
+            </AppBar>
+            <Grow in>
+                <Container>
+                    <Grid container justify="space-between" alignItems="center" spacing={4}>
+                        <Grid item xs={12} sm={7}>
+                            <Posts/>
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                            <Form/>
+                        </Grid>
+                    </Grid>
+                </Container>  
+            </Grow>
+        </Container>
+    );
 }
 
+//Export the "App" component
 export default App;
