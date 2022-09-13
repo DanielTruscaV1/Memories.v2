@@ -15,5 +15,10 @@ import thunk from "redux-thunk";
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
-//Link React to the HTML
-ReactDOM.render(<App/>, document.getElementById("root"));
+//Link React to the HTML and wrap the "App" component with the provider
+ReactDOM.render(
+    <Provider store={store}>
+        <App/>
+    </Provider>,    
+    document.getElementById("root")
+);

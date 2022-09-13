@@ -1,5 +1,5 @@
 //Import React
-import React from "react";
+import React, { useEffect } from "react";
 //Import @material-ui components
 import {Container, AppBar, Typography, Grow, Grid} from "@material-ui/core";
 
@@ -13,10 +13,22 @@ import Posts from "./components/Posts/Posts";
 //Import styles
 import useStyles from "./styles";
 
+//Import Redux features
+import {useDispatch} from "react-redux";
+
+//Import the actions
+import {getPosts} from "./actions/posts";
+
 //Create the "App" component
 const App = () => {
     //Use the styles
     const classes = useStyles();
+    //Create a dispatch variable using the "useDispatch" custom hook
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getPosts());
+    }, [dispatch]);
 
     //Return the HTML
     return (
@@ -29,7 +41,7 @@ const App = () => {
             </AppBar>
             <Grow in>
                 <Container>
-                    <Grid container justify="space-between" alignItems="center" spacing={4}>
+                    <Grid container justifyContent="space-between" alignItems="center" spacing={4}>
                         <Grid item xs={12} sm={7}>
                             <Posts/>
                         </Grid>
