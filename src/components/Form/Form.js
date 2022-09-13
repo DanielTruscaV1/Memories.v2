@@ -1,5 +1,5 @@
 //Boilerplate code
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 //Import UI components
 import {TextField, Button, Typography, Paper} from "@material-ui/core";
 
@@ -9,21 +9,32 @@ import useStyles from "./styles";
 import FileBase from "react-file-base64";
 
 //Import Redux features
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
-import {createPost} from "../../actions/posts";
+import {createPost, updatePost} from "../../actions/posts";
 
-const Form = () => {
+const Form = ({currentId, setCurrentId}) => {
   //Use the styles 
   const classes = useStyles();
   //Create the state
   const [postData, setPostData] = useState({creator:"", tilte:"", message:"", tags:"", selectedFile:""});
 
+  const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId): null);
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if(post)
+      setPostData(post);
+  }, [post]);
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(createPost(postData));
+    //If there is a current id
+    if(currentId)
+      dispatch(updatePost(currentId, postData));
+    else
+      dispatch(createPost(postData));
   };
 
   const clear = () => {

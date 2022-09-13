@@ -13,6 +13,9 @@ import {Provider} from "react-redux";
 import {createStore, applyMiddleware, compose} from "redux";
 import thunk from "redux-thunk";
 
+//Import the global CSS
+import "./index.css";
+
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
 //Link React to the HTML and wrap the "App" component with the provider

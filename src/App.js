@@ -1,5 +1,5 @@
 //Import React
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 //Import @material-ui components
 import {Container, AppBar, Typography, Grow, Grid} from "@material-ui/core";
 
@@ -21,6 +21,7 @@ import {getPosts} from "./actions/posts";
 
 //Create the "App" component
 const App = () => {
+    const [currentId, setCurrentId] = useState(null);
     //Use the styles
     const classes = useStyles();
     //Create a dispatch variable using the "useDispatch" custom hook
@@ -43,10 +44,10 @@ const App = () => {
                 <Container>
                     <Grid container justifyContent="space-between" alignItems="center" spacing={4}>
                         <Grid item xs={12} sm={7}>
-                            <Posts/>
+                            <Posts setCurrentId={setCurrentId}/>
                         </Grid>
                         <Grid item xs={12} sm={4}>
-                            <Form/>
+                            <Form currentId={currentId} setCurrentId={setCurrentId}/>
                         </Grid>
                     </Grid>
                 </Container>  
