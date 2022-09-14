@@ -30,22 +30,17 @@ const Form = ({currentId, setCurrentId}) => {
 
   const clear = () => {
     setCurrentId(0);
-    setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
+    setPostData({ creator: "", title: "", message: "", tags: "", selectedFile: "" });
   };
 
   const handleSubmit = e => {
     e.preventDefault();
     //If there is a current id
     if(currentId)
-    {
       dispatch(updatePost(currentId, postData));
-      clear();
-    }
     else
-    {
       dispatch(createPost(postData));
-      clear();
-    }
+    clear();
   };
 
   return (

@@ -29,7 +29,7 @@ const App = () => {
 
     useEffect(() => {
         dispatch(getPosts());
-    }, [dispatch]);
+    }, [currentId, dispatch]);
 
     //Return the HTML
     return (
