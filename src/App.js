@@ -1,6 +1,6 @@
 //Import React
 import React from "react";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
 //Import @material-ui components
 import {Container, Grow, Grid} from "@material-ui/core";
 
@@ -11,6 +11,8 @@ import useStyles from "./styles";
 import Navbar from "./components/Navbar/Navbar";
 //Import the "Home" component
 import Home from "./components/Home/Home";
+//Import the "Auth" component
+import Auth from "./components/Auth/Auth";
 
 //Create the "App" component
 const App = () => {
@@ -19,7 +21,10 @@ const App = () => {
         <BrowserRouter>
             <Container maxwidth="lg">
                 <Navbar/>
-                <Home/>
+                <Routes>
+                    <Route path="/" exact element={<Home/>}/>
+                    <Route path="/auth" exact element={<Auth/>}/>
+                </Routes>
             </Container>
         </BrowserRouter>
     );

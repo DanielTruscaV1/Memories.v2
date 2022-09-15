@@ -19,7 +19,7 @@ import useStyles from "./styles";
 const Home = () => {
     const [currentId, setCurrentId] = useState(null);
     //Use the styles
-    const classes = useStyles();
+    //const classes = useStyles();
     //Create a dispatch variable using the "useDispatch" custom hook
     const dispatch = useDispatch();
 
